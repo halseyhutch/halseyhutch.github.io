@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     startButton.addEventListener("click", function () {
-        audio = new Audio("bell.mp3");
+        audio = new Audio("bell.wav");
         startButton.disabled = true; // disable the button when the timer is running
         progressRing.style.display = "block"; // show the progress ring
         currentTime = totalTime;
