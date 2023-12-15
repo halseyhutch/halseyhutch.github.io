@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     var timerElement = document.getElementById("timer");
+    var progressRing = document.getElementById("progress-ring");
+    var startButton = document.getElementById("startButton");
+    var audio;
     var totalTime = 600; // 10 minutes in seconds
     var currentTime = totalTime;
+    var timerInterval;
 
     function updateTimer() {
         var minutes = Math.floor(currentTime / 60);
@@ -16,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function playBell() {
         // You can replace this with your preferred method of playing a sound
         // For example, using the HTML5 Audio element
-        var audio = new Audio("bell.wav");
         audio.play();
+        audioPlayed = true;
     }
 
     function update() {
@@ -26,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentTime === 0) {
             playBell();
             clearInterval(timerInterval);
+            startButton.disabled = false; // enable the button when the timer is done
+            progressRing.style.display = "none"; // hide the progress ring
         } else if (currentTime % 60 === 0) {
             playBell();
         }
@@ -33,9 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
         currentTime--;
     }
 
-    // Initial update
-    update();
-
-    // Update the timer every second
-    var timerInterval = setInterval(update, 1000);
+    startButton.addEventListener("click", function () {
+        audio = new Audio("bell.mp3");
+        startButton.disabled = true; // disable the button when the timer is running
+        progressRing.style.display = "block"; // show the progress ring
+        currentTime = totalTime;
+        update(); // initial update
+        timerInterval = setInterval(update, 1000);
+    });
 });

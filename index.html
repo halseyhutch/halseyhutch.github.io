@@ -34,9 +34,16 @@
             height: 100px;
             border-radius: 50%;
             clip: rect(0, 100px, 100px, 50px);
-            background: conic-gradient(#3F51B5 0% 0%, #3F51B5 0% 100%, transparent 0% 100%, transparent 100% 100%, #3F51B5 0% 0%);
+            background: conic-gradient(
+                #3F51B5 0% 0%,
+                #3F51B5 0% calc(100% - 2px),
+                transparent calc(100% - 2px) 100%,
+                transparent 100% 100%,
+                #3F51B5 0% 0%
+            );
             animation: countdown 60s linear infinite;
             z-index: 1;
+            display: none; /* initially hide the progress ring */
         }
         @keyframes countdown {
             from {
@@ -46,6 +53,12 @@
                 transform: rotate(360deg);
             }
         }
+        #startButton {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +66,7 @@
         <div id="timer">10:00</div>
         <div id="progress-ring"></div>
     </div>
+    <button id="startButton">Start Timer</button>
     <script src="script.js"></script>
 </body>
 </html>
