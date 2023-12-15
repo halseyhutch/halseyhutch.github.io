@@ -1,5 +1,4 @@
 let time = 600;
-let bell = document.getElementById('bell')
 let isPaused = false;
 let countdown;
 let circle = document.querySelector('.progress-ring__circle');
@@ -10,6 +9,7 @@ circle.style.strokeDashoffset = `${circumfrence}`;
 
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', function() {
+    bell = new Audio('bell.wav');
     if (this.textContent === 'Start Timer') {
         this.textContent = 'Pause Timer';
 

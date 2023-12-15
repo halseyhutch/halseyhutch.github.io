@@ -10,8 +10,8 @@ body {
 
 .container {
     position: relative;
-    width: 480px;
-    height: 480px;
+    width: 960px;
+    height: 960px;
 }
 
 .content {
@@ -23,19 +23,19 @@ body {
 }
 
 #timer {
-    font-size: 60px;
+    font-size: 120px;
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 28px;
+    margin-top: 40px;
+    padding: 20px 40px;
+    font-size: 56px;
     cursor: pointer;
 }
 
 .progress-ring__circle {
     stroke: green;
-    stroke-width: 50;
+    stroke-width: 100;
     fill: transparent;
     transition: stroke-dashoffset 1s linear;
     transform: rotate(-90deg);
