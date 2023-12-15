@@ -4,42 +4,40 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-color: #f3f3f3;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
 }
 
-#timer-container {
+.container {
     position: relative;
+    width: 480px;
+    height: 480px;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #timer {
-    font-size: 3em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    font-size: 60px;
 }
 
-#progress-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    clip: rect(0, 100px, 100px, 50px);
-    background: conic-gradient(#3F51B5 0% 0%, #3F51B5 0% 100%, transparent 0% 100%, transparent 100% 100%, #3F51B5 0% 0%);
-    animation: countdown 60s linear infinite;
-    z-index: 1;
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 28px;
+    cursor: pointer;
 }
 
-@keyframes countdown {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.progress-ring__circle {
+    stroke: green;
+    stroke-width: 50;
+    fill: transparent;
+    transition: stroke-dashoffset 1s linear;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
 }
