@@ -1,6 +1,7 @@
 let time = 600;
 let isPaused = false;
 let countdown;
+let currentSegment = null;
 let circle = document.querySelector('.progress-ring__circle');
 let circumfrence = 2 * Math.PI * circle.getAttribute('r');
 
@@ -9,9 +10,6 @@ circle.style.strokeDashoffset = `${circumfrence}`;
 
 let startButton = document.getElementById('start');
 let scheduleDisplay = document.getElementById('schedule-text');
-
-let switchSound = new Audio('switch.wav');
-let currentSegment = null;
 
 const schedule = [
     { start: 0, end: 60, text: "standing calf stretch", midSound: true },
@@ -29,7 +27,7 @@ const schedule = [
     { start: 570, end: 600, text: "arms / neck" },
 ];
 
-function updateScheduleText() {
+function updateScheduleText(switchSound) {
     const currentTime = 600 - time;
     for (const segment of schedule) {
         if (currentTime >= segment.start && currentTime < segment.end) {
@@ -62,6 +60,7 @@ function updateScheduleText() {
 
 startButton.addEventListener('click', function() {
     bell = new Audio('bell.wav');
+    switchSound = new Audio('switch.wav');
     if (this.textContent === 'Start Timer') {
         this.textContent = 'Pause Timer';
         isPaused = false;
@@ -77,7 +76,7 @@ startButton.addEventListener('click', function() {
                     bell.play();
                 }
 
-                updateScheduleText();
+                updateScheduleText(switchSound);
 
                 if (time != 600) {
                     circle.style.strokeDashoffset = `${circumfrence - ((60 - seconds) / 60) * circumfrence}`;
