@@ -1,7 +1,7 @@
 let time = 600;
 let isPaused = false;
 let countdown;
-let currentSegment = null;
+let playMidSound = false;
 let circle = document.querySelector('.progress-ring__circle');
 let circumfrence = 2 * Math.PI * circle.getAttribute('r');
 
@@ -33,18 +33,12 @@ function updateScheduleText(switchSound) {
         if (currentTime >= segment.start && currentTime < segment.end) {
             scheduleDisplay.textContent = segment.text;
 
-            // check if we're in a new segment
-            if (currentSegment !== segment) {
-                currentSegment = segment;
-                currentSegment.midPlayed = false; // reset midSound flag for the new segment
-            }
-
             // play midSound halfway through the segment if specified
-            if (segment.midSound && !currentSegment.midPlayed) {
+            // assumption: all intervals are of even length
+            if (segment.midSound) {
                 const midpoint = (segment.start + segment.end) / 2;
-                if (currentTime >= midpoint) {
-                    switchSound.play();
-                    currentSegment.midPlayed = true; // ensure it only plays once
+                if (currentTime == midpoint) {
+                    playMidSound = true;
                 }
             }
             
@@ -76,7 +70,12 @@ startButton.addEventListener('click', function() {
                     bell.play();
                 }
 
-                updateScheduleText(switchSound);
+                updateScheduleText();
+
+                if (playMidSound) {
+                    switchSound.play();
+                    playMidSound = false;
+                }
 
                 if (time != 600) {
                     circle.style.strokeDashoffset = `${circumfrence - ((60 - seconds) / 60) * circumfrence}`;
