@@ -27,7 +27,7 @@ const schedule = [
     { start: 570, end: 600, text: "arms / neck" },
 ];
 
-function updateScheduleText(switchSound) {
+function updateScheduleText() {
     const currentTime = 600 - time;
     for (const segment of schedule) {
         if (currentTime >= segment.start && currentTime < segment.end) {
