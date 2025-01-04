@@ -8,16 +8,11 @@ circle.style.strokeDasharray = `${circumfrence} ${circumfrence}`;
 circle.style.strokeDashoffset = `${circumfrence}`;
 
 let startButton = document.getElementById('start');
-let scheduleDisplay = document.createElement('div');
-scheduleDisplay.id = 'schedule';
-scheduleDisplay.style.fontSize = '48px';
-scheduleDisplay.style.marginTop = '20px';
-document.querySelector('.content').appendChild(scheduleDisplay);
+let scheduleDisplay = document.getElementById('schedule-text');
 
 let switchSound = new Audio('switch.wav');
 let currentSegment = null;
 
-// Schedule array
 const schedule = [
     { start: 0, end: 60, text: "standing calf stretch", midSound: true },
     { start: 60, end: 120, text: "calf curb stretch", midSound: true },
@@ -25,7 +20,7 @@ const schedule = [
     { start: 140, end: 180, text: "seated butterfly", pause: true  },
     { start: 180, end: 240, text: "figure four", midSound: true },
     { start: 240, end: 300, text: "seated twist", midSound: true },
-    { start: 300, end: 360, text: "release the farts", midSound: true },
+    { start: 300, end: 360, text: "release the farts!!", midSound: true },
     { start: 360, end: 420, text: "hamstring stretch", midSound: true },
     { start: 420, end: 480, text: "hip flexors", midSound: true },
     { start: 480, end: 510, text: "wide legged forward fold" },

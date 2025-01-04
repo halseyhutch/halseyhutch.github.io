@@ -14,6 +14,14 @@ body {
     height: 960px;
 }
 
+#schedule-text {
+    font-size: 64px; /* Keep the larger font size */
+    font-weight: bold;
+    margin-bottom: 40px; /* Slightly reduce the spacing */
+    color: #333;
+    text-align: center;
+}
+
 .content {
     position: absolute;
     top: 50%;
